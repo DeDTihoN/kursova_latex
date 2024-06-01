@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  1 JUN 2024 16:41
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  1 JUN 2024 21:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -852,18 +852,20 @@ Overfull \hbox (9.68753pt too wide) in paragraph at lines 129--130
  []
 
 [2] [3] [4]
-Overfull \hbox (0.6166pt too wide) in paragraph at lines 208--211
-[]\TU/TimesNewRoman(1)/m/it/14.4 Евристика співпадаючого суфікса\TU/TimesNewRoman(1)/m/n/14.4 : Якщо при порівнянні шаблону спра-
+Overfull \hbox (6.4345pt too wide) in paragraph at lines 204--206
+[]\TU/TimesNewRoman(1)/m/n/14.4 Для цього для кожного символу алфавіту $\OT1/cmr/m/n/14.4 ^^F$ \TU/TimesNewRoman(1)/m/n/14.4 запам’ятовуємо індекс остан-
  []
 
 [5]
-Overfull \hbox (0.4255pt too wide) in paragraph at lines 216--219
+Overfull \hbox (0.4255pt too wide) in paragraph at lines 219--220
 []\TU/TimesNewRoman(1)/m/n/14.4 Далі в алгоритмі просто використовуються ці заздалегідь обчислені зсу-
  []
 
 File: images/boyer_moore.png Graphic file (type bmp)
 <images/boyer_moore.png>
-[6] [7] [8]
+File: images/boyer_moore_suffix.png Graphic file (type bmp)
+<images/boyer_moore_suffix.png>
+[6] [7] [8] [9]
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -977,21 +979,21 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
- [9] (./GeometryTex.aux)
+ [10] (./GeometryTex.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
 Package rerunfilecheck Info: File `GeometryTex.out' has not changed.
-(rerunfilecheck)             Checksum: A6B90D49C7DA4F08F6988CCAC7251C1E;1676.
+(rerunfilecheck)             Checksum: 326F447D9337E159D8D2507DD0716AEA;1998.
  ) 
 Here is how much of TeX's memory you used:
- 18026 strings out of 474923
- 352598 string characters out of 5765015
+ 18036 strings out of 474923
+ 352924 string characters out of 5765015
  1926189 words of memory out of 5000000
- 39749 multiletter control sequences out of 15000+600000
+ 39758 multiletter control sequences out of 15000+600000
  564535 words of font info for 112 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  79i,11n,117p,614b,463s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on GeometryTex.pdf (10 pages).
+Output written on GeometryTex.pdf (11 pages).

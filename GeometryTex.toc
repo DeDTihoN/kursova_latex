@@ -5,7 +5,8 @@
 \contentsline {subsection}{\numberline {2.1}Постановка задачі патерн-метчингу}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Загальна характеристика алгоритмів пошуку рядка}{3}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Алгоритм Бойера-Мура}{5}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Практична частина}{7}{section.3}%
-\contentsline {section}{\numberline {4}Висновки}{8}{section.4}%
-\contentsline {section}{Література}{9}{section.4}%
+\contentsline {subsection}{\numberline {2.4}Алгоритми Shift-OR (SO) та Shift-AND (SA)}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Практична частина}{8}{section.3}%
+\contentsline {section}{\numberline {4}Висновки}{9}{section.4}%
+\contentsline {section}{Література}{10}{section.4}%
 \xpginauxfilefalse 

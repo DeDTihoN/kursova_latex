@@ -1,0 +1,5 @@
+PWD C:/Users/pc/source/repos/LatexProject
+INPUT d:/texlive/2023/texmf.cnf
+INPUT d:/texlive/2023/texmf-dist/web2c/texmf.cnf
+INPUT d:/texlive/2023/texmf-var/web2c/xetex/xelatex.fmt
+INPUT GeometryTex.tex

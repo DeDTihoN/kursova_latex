@@ -69,6 +69,9 @@
 \usepackage{graphicx}
 \usepackage{caption} % Пакет для підписів до зображень
 \usepackage{hyperref} % Пакет для создания кликабельных ссылок
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{longtable}
 
 \begin{document}	
 
@@ -166,7 +169,7 @@
 
 \textbf{Алгоритми на основі порівняння символів}
 
-Алгоритми на основі порівняння символів (Character-based approaches) є класичним підходом, який просто порівнює символи для вирішення задач пошуку рядка.
+Алгоритми на основі порівняння символів (character-based approaches або comparison based approaches) є класичним підходом, який просто порівнює символи для вирішення задач пошуку рядка.
 
 Алгоритми на основі порівняння символів мають дві основні стадії: пошук і зсув. Алгоритм Бойера-Мура \cite{bm}, є стандартним та еталонним методом цього типу. Він використовує таблицю зсувів для пропуску непотрібних порівнянь, що значно підвищує швидкість пошуку.
 
@@ -326,9 +329,131 @@ S[q] - посилання на стан автомата, що є найбіль
 	\newpage
     \section{Порівняння ефективності алгоритмів}
 
-	\subsection{Методика порівняння ефективності алгоритмів}
+	\subsection{Фактори впливу на ефективність алгоритмів}
 
-    \newpage
+	Одразу зазначимо, що не будемо порівнювати алгоритми за об'ємом зайнятої додаткової пам'яті, адже більшість алгоритмів займають $O(m)$, або $O(m*|\Sigma|)$ додаткової пам'яті, що є незначним показником при невеликих патернах та алфавітах на яких в більшості випадків виконують пошук.
+	
+	Також зазначимо, що в цій роботі не будуть порівнюватись алгоритми, що виконують препроцесинг над текстом (так звані <<offline exact string matching algorithms>>), адже їх потрібно порівнювати окремо від <<онлайн>> алгоритмів.
+
+	Наведемо основні фактори впливу на швидкодію алгоритмів патерн метчингу:
+	\begin{itemize}
+		\item $|T|$ - довжина тексту.
+		\item $|P|$ - довжина шаблону.
+		\item $|\Sigma|$ - розмір алфавіту.
+		\item Кількість різних підрядків $P$ та $T$.
+		\item Кількість входжень $P$ в $T$.
+		\item Граматика мови, до якої належить текст і шаблон (якщо існує).
+		\item "Ворожість" користувача. Іншими словами: чи буде користувач навмисно задавати дані, на яких алгоритм повільно працюватиме?
+		\item Архітектура процесора. Деякі процесори мають автоінкрементні або SIMD-операції, які дозволяють швидко порівняти дві ділянки ОЗП (наприклад, rep cmpsd x86). Деякі алгоритми використовують такі операції (SSE Filter Algorithm).
+		\item Характер даних шаблона $P$ у порівнянні з $T$. Наприклад якщо $P$ - деяке число, що шукається в англійському тексті, то більшість $character-based$ алгоритмів оптимізує пошук використовуючи свої евристики зсуву. 
+	\end{itemize}
+
+	Додамо що цей перелік не є кінцевим і можна навести ще багато інших факторів впливу.
+
+	\subsection{Методика порівняння алгоритмів}
+
+	У праці Ф. Саймона та Л. Тьєррі \cite{experiment} та інших роботах з порівнянням алгоритмів патерн-метчингу, при порівнянні алгоритмів пошуку, увагу було зосереджено на великій кількості алгоритмів та різних можливих вхідних текстах.
+	При тестуванні патерни завжди обирались випадковим чином із тексту.
+
+	Тому у власній роботі, я вирішив розширити множину можливих патернів і порівняння будуть виконуватись по наступним типам патернів:
+	\begin{itemize}
+		\item Випадкові патерни, заданого алфавіту.
+		\item Патерни випадковим чином, обрані із заданого тексту.
+		\item Патерни, що часто зустрічаються в тексті. Наприклад для тексту англійської літератури було обрано патерни найбільш повторюваних слів англійської мови. Аналогічно для української - найбільш повторюваних слів української мови. Для json бази даних - деякі ключові слова та значення полів, що часто зустрічаються.
+	\end {itemize}
+
+	Також зазначу, що не було спроби визначити ефективність алгоритмів, за рядом експериментів, окрім як просумувати абсолютні значення часу виконання алгоритмів.
+
+	Тому у власній роботі я вводжу поняття відносного результату роботи алгоритму $\sigma_{\text{алг}}$.
+
+	Нехай ми порівнюємо деяку множину алгоритмів. Нехай деякий алгоритм відпрацював найшивдше з усіх за час $t_{\text{min}}$.
+
+	Тоді відносний результат алгоритму, що відпрацював за час $t_{\text{алг}}$, дорівнює:
+	$$\sigma_{\text{алг}} = \frac{t_{\text{алг}}-t_{\text{min}}}{t_{\text{min}}}$$
+    
+	Введення відносних результатів дозволяє зробити загальний аналіз результатів роботи алгоритмів за декількома експериментами.
+
+	Наприклад маємо такі результати роботи алгоритмів (табл \ref{table:times}):
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			& \textbf{Алгоритм 1} & \textbf{Алгоритм 2} \\ 
+			\hline
+			\textbf{Тест 1} & 40 & 20 \\ 
+			\hline
+			\textbf{Тест 2} & 500 & 700 \\ 
+			\hline
+		\end{tabular}
+		\caption{Абсолютні результати алгоритмів у мс}
+		\label{table:times}
+	\end{table}
+
+	Тоді маємо наступні відносні результати роботи алгоритмів (табл \ref{table:relative_times}):
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			& \textbf{Алгоритм 1} & \textbf{Алгоритм 2} \\ 
+			\hline
+			\textbf{Тест 1} & 1 & 0 \\ 
+			\hline
+			\textbf{Тест 2} & 0 & 0.4 \\ 
+			\hline
+		\end{tabular}
+		\caption{Відносні результати алгоритмів $\sigma$}
+		\label{table:relative_times}
+	\end{table}
+
+	Сумарний час виконання 1 алгоритму - 540 мс. Сумарний середній відносний результат 0.5.
+
+	Сумарний час виконання 2 алгоритму - 720 мс. Сумарний середній відносний результат 0.2.
+
+	Маємо що 1-й алгоритм сумарно працював менше часу, а 2-й в середньому менше відхилявся від оптимального за тестом.
+
+	Середній відносний результат може бути непоганою оцінкою роботи алгоритма за декількома тестами, хоча можливо можна обрати більш доцільну формулу для обчислення $\sigma_{\text{алг}}$.
+
+	Далі я буду користуватись формулою наданою в цьому підрозділі.
+	\subsection{Набір алгоритмів для порівняння}
+
+	Для порівняння ефективності на практиці мною було обрано наступні алгоритми (табл \ref{table:string_algorithms}):
+
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			& \textbf{Повна назва} & \textbf{Рік розробки} & \textbf{Клас алгоритму} \\ 
+			\hline
+			\textbf{KR} & Karp-Rabin & 1987 & comparison \\ 
+			\hline
+			\textbf{KMP} & Knuth-Morris-Pratt & 1977 & comparison \\ 
+			\hline
+			\textbf{BNDMQ2} & BNDM with q-grams & 2009 & bit-parallelism \\ 
+			\hline
+			\textbf{BM} & Boyer-Moore & 1977 & comparison \\ 
+			\hline
+			\textbf{BXS} & BNDM with Extended Shifts &  2010 & bit-parallelism \\ 
+			\hline
+			\textbf{BOM} &  Backward-Oracle-Matching & 1999 & automata \\ 
+			\hline
+			\textbf{Skip} & Skip-Search  & 1998 & comparison \\ 
+			\hline
+			\textbf{Hash3} & Wu-Manber for Pattern Matching & 2007 & comparison \\ 
+			\hline
+			\textbf{FS} & Fast-Search &  2003 & comparison \\ 
+			\hline
+			\textbf{SSM} & Simple String Matching & 2015 & hybrid \\ 
+			\hline
+			\textbf{SBNDM} & Simplified BNDM & 2003 & bit-parallelism \\ 
+			\hline
+			\textbf{BSDM} & Backward SNR DAWG Matching & 2012 & automata \\ 
+			\hline
+		\end{tabular}
+		\caption{Інформація про обрані алгоритми пошуку рядка}
+		\label{table:string_algorithms}
+	\end{table}
+
+	\newpage
     % Висновки
     \section{Висновки}
 
@@ -342,12 +467,16 @@ S[q] - посилання на стан автомата, що є найбіль
 		\bibitem{morris-pratt}
 		J. H. Morris, Jr and V. R. Pratt. A linear pattern-matching algorithm. Report 40, University of California, Berkeley, 1970.
 		\bibitem{smart}
-		Faro, S., Lecroq, T., Borzi, S., Di Mauro, S.,\& Maggio, A. (2016, August). The String Matching Algorithms Research Tool. In Stringology (pp. 99-111).
+		Faro, S., \& Lecroq, T., Borzi, S., Di Mauro, S.,\& Maggio, A. (2016, August). The String Matching Algorithms Research Tool. In Stringology (pp. 99-111).
 		\bibitem{exact}
-		Faro, S.,\& Lecroq, T. (2013). The exact online string matching problem: A review of the most recent results. ACM Computing Surveys (CSUR), 45(2), 1-42.
+		Faro, S., \& Lecroq, T. (2013). The exact online string matching problem: A review of the most recent results. ACM Computing Surveys (CSUR), 45(2), 1-42.
 		\bibitem{bm}
 		R. S. Boyer and J. S. Moore. A fast string searching algorithm. Commun.
 ACM, 20(10):762–772, 1977.
+		\bibitem{experiment}
+		Faro, S., \& Lecroq, T. (2010). The exact string matching problem:
+		
+		a comprehensive experimental evaluation. arXiv preprint arXiv:1012.2547.
     \end{thebibliography}
     
 \end{document}

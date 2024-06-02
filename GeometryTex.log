@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  2 JUN 2024 17:16
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  3 JUN 2024 01:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -920,15 +920,7 @@ File: images/sa_example.png Graphic file (type bmp)
  [7] [8]
 File: images/suffix_automata.png Graphic file (type bmp)
 <images/suffix_automata.png>
- [9] [10] [11] [12]
-Overfull \hbox (28.51144pt too wide) in paragraph at lines 423--452
- [][][][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[13] [14]
+ [9] [10] [11] [12] [13] [14] [15] [16] [17]
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -1042,21 +1034,21 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
- [15] (./GeometryTex.aux)
+ [18] (./GeometryTex.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
 Package rerunfilecheck Info: File `GeometryTex.out' has not changed.
-(rerunfilecheck)             Checksum: E8A9A998B800952819EC409F927B845E;3365.
+(rerunfilecheck)             Checksum: 61C8ADDD170F79656F33289A753E48C5;3955.
  ) 
 Here is how much of TeX's memory you used:
- 18390 strings out of 474923
- 358680 string characters out of 5765015
- 1928189 words of memory out of 5000000
- 40095 multiletter control sequences out of 15000+600000
- 564535 words of font info for 112 fonts, out of 8000000 for 9000
+ 18434 strings out of 474923
+ 359655 string characters out of 5765015
+ 1940189 words of memory out of 5000000
+ 40119 multiletter control sequences out of 15000+600000
+ 568368 words of font info for 138 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  79i,12n,117p,614b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on GeometryTex.pdf (16 pages).
+Output written on GeometryTex.pdf (19 pages).

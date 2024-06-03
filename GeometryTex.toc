@@ -11,12 +11,12 @@
 \contentsline {subsection}{\numberline {2.1}Фактори впливу на ефективність алгоритмів}{13}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Методика порівняння алгоритмів}{14}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Набір алгоритмів для порівняння}{16}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Практична частина}{17}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Порівняння алгоритмів на випадкових патернах}{17}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Порівняння алгоритмів на випадкових патернах із тексту }{20}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Порівняння алгоритмів на повторюваних патернах із тексту}{24}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Підведення підсумків та порівнювання за розміром алфавіту}{25}{subsection.3.4}%
-\contentsline {section}{Висновки}{27}{figure.caption.31}%
-\contentsline {section}{Література}{28}{figure.caption.31}%
-\contentsline {section}{Додаток А}{29}{figure.caption.31}%
+\contentsline {section}{\numberline {3}Практична частина}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Порівняння алгоритмів на випадкових патернах}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Порівняння алгоритмів на випадкових патернах із тексту }{21}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Порівняння алгоритмів на повторюваних патернах із тексту}{25}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Підведення підсумків та порівнювання за розміром алфавіту}{26}{subsection.3.4}%
+\contentsline {section}{Висновки}{28}{figure.caption.31}%
+\contentsline {section}{Література}{29}{figure.caption.31}%
+\contentsline {section}{Додаток А}{30}{figure.caption.31}%
 \xpginauxfilefalse 
